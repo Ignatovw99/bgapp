@@ -48,6 +48,9 @@
    }
 ?>
       </table>
+<?php
+   print "<h4>Served by: ".gethostname()."</h4>";
+?>
     </div>
   </body>
 </html>
