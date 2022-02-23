@@ -1,20 +1,28 @@
 version: "3.8"
 services:
+    php:
+        image: php:7.0-fpm
+        volumes:
+            - "${PROJECT_ROOT}:/var/www/html"
+        deploy:
+            replicas: 3
+        networks:
+            - app-network
     web:
         image: ignatovw99/bgapp-web
         deploy:
-            replicas: 5
+            replicas: 3
+        volumes:
+            - "${PROJECT_ROOT}:/var/www/html"
         ports:
             - 8080:80
-        volumes:
-           - "${PROJECT_ROOT}:/var/www/html"
         networks:
             - app-network
     db:
         image: ignatovw99/bgapp-db
-        networks:
-            - app-network
         environment:
             MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+        networks:
+            - app-network
 networks:
     app-network:
