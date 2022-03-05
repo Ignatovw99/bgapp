@@ -1,3 +1,2 @@
 FROM mariadb:10.7
-RUN apt install php7.4-mysql
 ADD ./db/db_setup.sql /docker-entrypoint-initdb.d/init.sql
